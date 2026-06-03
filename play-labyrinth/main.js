@@ -5,13 +5,13 @@
   const levelLabel = document.getElementById('level');
   const restartBtn = document.getElementById('restart');
 
-  let cols = 16, rows = 16; // начальный размер
+  let cols = 16, rows = 16;
   let level = 1;
   let cellSize = Math.floor(canvas.width / cols);
 
   function Cell(x, y) {
     this.x = x; this.y = y;
-    this.walls = [true, true, true, true]; // top,right,bottom,left
+    this.walls = [true, true, true, true];
     this.visited = false;
   }
 
@@ -42,7 +42,6 @@
         pushIf(x-1, y, 3);
         if (neighbors.length) {
           const pick = neighbors[Math.floor(Math.random()*neighbors.length)];
-          // remove walls between current and pick.cell
           const dir = pick.dir;
           current.walls[dir] = false;
           pick.cell.walls[(dir+2)%4] = false;
@@ -149,7 +148,6 @@
   }
 
   function newLevel() {
-    // увеличить размер через каждые несколько уровней, но ограничим максимум
     cols = Math.min(64, 16 + Math.floor(level/3)*2);
     rows = Math.min(64, 16 + Math.floor(level/3)*2);
     cellSize = Math.floor(canvas.width / cols);
@@ -163,10 +161,8 @@
 
   function draw() {
     maze.draw(cellSize, ctx);
-    // draw exit
     const ex = cols-1, ey = rows-1;
     drawCoin(ex*cellSize, ey*cellSize);
-    // draw player
     drawCat(player.x*cellSize, player.y*cellSize);
   }
 
@@ -174,7 +170,6 @@
     const nx = player.x + dx, ny = player.y + dy;
     if (nx < 0 || nx >= cols || ny < 0 || ny >= rows) return false;
     const cur = maze.grid[player.x + player.y*cols];
-    // check walls depending on direction
     if (dx === 1) return !cur.walls[1];
     if (dx === -1) return !cur.walls[3];
     if (dy === -1) return !cur.walls[0];
@@ -184,10 +179,8 @@
 
   function stepTo(nx, ny) {
     player.x = nx; player.y = ny; draw();
-    // reached exit?
     if (player.x === cols-1 && player.y === rows-1) {
       level++;
-      // небольшая анимация/задержка
       setTimeout(newLevel, 250);
     }
   }
@@ -213,7 +206,6 @@
 
   restartBtn.addEventListener('click', () => { level = 1; newLevel(); });
 
-  // mobile/touch: tap to move to neighboring cell if open
   canvas.addEventListener('click', (ev) => {
     const rect = canvas.getBoundingClientRect();
     const px = ev.clientX - rect.left, py = ev.clientY - rect.top;
@@ -222,6 +214,5 @@
     if (Math.abs(dx)+Math.abs(dy) === 1 && canMove(dx,dy)) stepTo(tx,ty);
   });
 
-  // Инициализация
   newLevel();
 })();

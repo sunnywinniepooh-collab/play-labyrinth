@@ -1,6 +1,6 @@
 {
-  "name": "Лабиринт с котом",
-  "short_name": "Лабиринт",
+  "name": "Play Labyrinth",
+  "short_name": "Play Labyrinth",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#13220f",

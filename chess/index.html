@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Chess — Play Labyrinth</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="chess-page">
+    <header class="chess-header">
+      <div>
+        <h1>Chess</h1>
+        <p>Play against the computer and change difficulty.</p>
+      </div>
+      <div class="controls">
+        <label>Difficulty:
+          <select id="difficulty">
+            <option value="1">Easy</option>
+            <option value="2" selected>Medium</option>
+            <option value="3">Hard</option>
+          </select>
+        </label>
+        <button id="restart">Restart</button>
+      </div>
+    </header>
+    <div class="info">
+      <span id="status">White to move</span>
+    </div>
+    <div id="board" class="board"></div>
+    <div class="legend">Click your piece, then the square to move.</div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
