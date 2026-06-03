@@ -1,0 +1,15 @@
+{
+  "name": "Play Labyrinth",
+  "short_name": "Play Labyrinth",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#13220f",
+  "theme_color": "#2c7d2f",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ]
+}
